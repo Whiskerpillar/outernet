@@ -4,9 +4,6 @@ echo Provision Raspbian System for outernet 1.00
 
 
 #Moving Service from home to usr
-mkdir 
-
-
 if mv -f $HOME/outernet/install/service/outernet-service.sh /usr/local/bin/; then
   echo "File moved successfully."
 else
