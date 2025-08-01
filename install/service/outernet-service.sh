@@ -1,9 +1,9 @@
 #! /bin/bash
 
-#Murmur v1.03 network provision for Rasbian
-#AM 11/24
+#outernet v1.03 network provision for Rasbian
+#AM 8/2/2025
 
-#Log to Murmur.log
+#Log to outernet.log
 exec >> /home/keppler/murmur/murmur.log 2>&1
 
 #CONFIG Defaults (Please do not change here as it will get overwriten by a the config file)
