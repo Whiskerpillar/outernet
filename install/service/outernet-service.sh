@@ -82,3 +82,5 @@ if [[ $BOOT_TYPE = "outernet" ]]; then
 	fi
 
 sudo systemctl restart networking
+
+exit 0
