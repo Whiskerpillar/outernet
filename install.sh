@@ -64,8 +64,7 @@ sudo sed "s/NODE_NAME=.*/NODE_NAME="$setNODE_NAME"/" $CONFIG_FILE | sudo tee /va
     echo Setting configuration files
 sudo sed -i "s/^NODE_NAME=.*/NODE_NAME=\"$setNODE_NAME\"/" $CONFIG_FILE
 sudo sed -i "s/^WIRELESS_ESSID=.*/WIRELESS_ESSID=\"$setNETWORKSSID\"/" $CONFIG_FILE
-#sudo sed -i "s/WIRELESS_ESSID=.*/WIRELESS_ESSID="$setNETWORKSSID"/" $CONFIG_FILE
-sudo sed -i "s/STATIC_ADDRESS=.*/STATIC_ADDRESS="$setIPADDRESS"/" $CONFIG_FILE
+sudo sed -i "s/STATIC_ADDRESS=.*/STATIC_ADDRESS=\"$setIPADDRESS\"/" $CONFIG_FILE
 
 
 echo config Set Successfully!
