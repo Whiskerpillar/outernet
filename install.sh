@@ -11,11 +11,14 @@ fi
 # Get the original user's home directory
 ORIGINAL_USER_HOME=$(getent passwd "$SUDO_USER" | cut -d: -f6)
 
+read -p "What is your Node's name? :" setNODE_NAME
+read -p "What is your network SSID (default: murmur)? :" setNETWORKSSID
+read -p "Would you like to install to update and download apps? (y/n)" installDownloadappsbool
 echo Installing files to system folders...
 
 #Moving Service from home to usr
 if mv -f $ORIGINAL_USER_HOME/outernet/install/service/outernet-service.sh /usr/local/bin/; then
-  echo "File moved successfully."
+  echo "outernet-service.sh: success."
 else
   echo "Error: outernet-service.sh could not be moved."
   exit 1
@@ -26,7 +29,7 @@ sudo chmod +x /usr/local/bin/outernet-service.sh
 
 #moving into Systemd
 if mv -f $ORIGINAL_USER_HOME/outernet/install/service/outernet.service /etc/systemd/system/; then
-  echo "File moved successfully."
+  echo "outernet.service: success."
 else
   echo "Error: outernet.service could not be moved."
   exit 1
@@ -34,7 +37,7 @@ fi
 
 #moving into etc
 if mv -f $ORIGINAL_USER_HOME/outernet/install/outernet.conf /etc/; then
-  echo "File moved successfully."
+  echo "outernet.conf: success."
 else
   echo "Error: outernet.conf could not be moved."
   exit 1
@@ -42,21 +45,27 @@ fi
 
 #moving into var/log
 if mv -f $ORIGINAL_USER_HOME/outernet/install/outernet.log /var/log/; then
-  echo "File moved successfully."
+  echo "outernet.log: success."
+  LOG_FILE="/var/log/outernet.log"
 else
-  echo "Error: outernet.conf could not be moved."
+  echo "Error: outernet.log could not be moved."
   exit 1
 fi
-echo File move Complete!
 
-LOG_FILE="/var/log/outernet.log"
+echo Files moved Successfully!
 
 
-read -p "What is your Node's name? :" setNODE_NAME
-sudo sed "s/NODE_NAME=.*/NODE_NAME="$setNODE_NAME"/" /etc/outernet.conf | sudo tee /var/outernet.conf
+#Sends current config to the log
+sudo sed "s/NODE_NAME=.*/NODE_NAME="$setNODE_NAME"/" /etc/outernet.conf | sudo tee /var/outernet.conf > /dev/null
+
+echo Setting configuration files
 sudo sed -i "s/NODE_NAME=.*/NODE_NAME="$setNODE_NAME"/" /etc/outernet.conf
-
-read -p "What is your network SSID ? :" setNETWORKSSID
 sudo sed -i "s/WIRELESS_ESSID=.*/WIRELESS_ESSID="$setNETWORKSSID"/" /etc/outernet.conf
+echo config Set Successfully!
 
-
+if [[$installDownloadappsbool = "y"]]; then
+    sudo apt update
+    sudo apt install gpsd
+    sudo apt install mumble
+    sudo apt install mumble-server
+fi
