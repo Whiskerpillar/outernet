@@ -13,8 +13,8 @@ ORIGINAL_USER_HOME=$(getent passwd "$SUDO_USER" | cut -d: -f6)
 
 read -p "What is your Node's name? :" setNODE_NAME
 read -p "What is your network SSID (default: murmur)? :" setNETWORKSSID
-read -p "Would you like to use a static IP Address? ('false' disables / IP address enables)" setIPADDRESS
-read -p "Would you like to install to update and download apps? (y/n)" installDOWNLOAD_APPS
+read -p "Would you like to use a static IP Address? ('false' disables / IP address enables) :" setIPADDRESS
+read -p "Would you like to install to update and download apps? (y/n) :" installDOWNLOAD_APPS
 echo Installing files to system folders...
 
 #Moving Service from home to usr
@@ -67,7 +67,7 @@ sudo sed -i "s/STATIC_ADDRESS=.*/STATIC_ADDRESS="$setIPADDRESS"/" /etc/outernet.
 
 echo config Set Successfully!
 
-if [[$installDOWNLOAD_APPS == "y"]]; then
+if [["$installDOWNLOAD_APPS" == "y"]]; then
     sudo apt update
     sudo apt install gpsd
     sudo apt install mumble
