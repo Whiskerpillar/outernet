@@ -4,19 +4,17 @@
 #AM 8/2/2025
 
 #Log to outernet.log
-exec >> /home/keppler/murmur/murmur.log 2>&1
+exec >> /var/log/outernet.log 2>&1
 
 #CONFIG Defaults (Please do not change here as it will get overwriten by a the config file)
-#~/murmur.conf Ver 1.0
 BOOT_TYPE="wifi"
 STATIC_ADDRESS="false"
 WIRELESS_CHANNEL="1"
-WIRELESS_ESSID="murmur"
+WIRELESS_ESSID="outernet"
 MESH_MTU=""
-NODE_NAME="keppler"
+NODE_NAME="NewNode"
 
-#source /etc/murmur/murmur.conf
-source /home/$NODE_NAME/murmur/murmur.conf
+source /etc/outernet.conf
 
 echo Config Values
 echo $BOOT_TYPE $STATIC_ADDRESS $WIRELESS_CHANNEL $WIRELESS_ESSID $MESH_MTU
@@ -77,7 +75,7 @@ echo If you are running this post start-up you will need to restart to reconnect
 # Example usage
 #log "Script started"
 
-if [[ $BOOT_TYPE = "murmur" ]]; then
+if [[ $BOOT_TYPE = "outernet" ]]; then
 		provisionMurmur
 	else
 		revertToWireless
