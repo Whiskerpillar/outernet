@@ -67,7 +67,7 @@ sudo sed -i "s/STATIC_ADDRESS=.*/STATIC_ADDRESS="$setIPADDRESS"/" /etc/outernet.
 
 echo config Set Successfully!
 
-if [["$installDOWNLOAD_APPS" == "y"]]; then
+if [[ "$installDOWNLOAD_APPS" == "y" ]]; then
     sudo apt update
     sudo apt install gpsd
     sudo apt install mumble
