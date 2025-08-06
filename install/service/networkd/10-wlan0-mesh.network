@@ -1,0 +1,10 @@
+[Match]
+Name=wlan0
+
+[Network]
+BATADV=bat0
+MTUBytes=1500
+
+[Wireless]
+Mode=mesh
+SSID=MyBatmanMesh
