@@ -1,0 +1,7 @@
+#/etc/systemd/network/20-bat0.netdev
+[NetDev]
+Name=bat0
+Kind=batadv
+
+[BATADV]
+MeshIF=wlan0
