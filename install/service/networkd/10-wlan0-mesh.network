@@ -4,7 +4,7 @@ Name=wlan0
 
 [Network]
 BATADV=bat0
-MTUBytes=1500
+MTUBytes=1468
 
 [Wireless]
 Mode=mesh
