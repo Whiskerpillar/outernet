@@ -3,9 +3,10 @@
 Name=wlan0
 
 [Network]
-BATADV=bat0
+#BATADV=bat0
 MTUBytes=1468
 
 [Wireless]
-Mode=mesh
-SSID=MyBatmanMesh
+Mode=ad-hoc
+SSID=murmur
+Frequency=2412
