@@ -47,9 +47,12 @@ else
   exit 1
 fi
 
+    #Cleaning old files
+sudo rm /etc/outernet -r
 mkdir -p /etc/outernet
+
     #moving config into etc
-if mv -f $ORIGINAL_USER_HOME/outernet/install/service/config/ /etc/outernet/; then
+if mv -f $ORIGINAL_USER_HOME/outernet/install/service/config/* /etc/outernet/; then
   echo "outernet.conf: success."
 else
   echo "Error: outernet config files could not be moved."
