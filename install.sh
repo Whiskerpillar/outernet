@@ -36,14 +36,6 @@ else
   exit 1
 fi
 
-    #moving into etc
-if mv -f $ORIGINAL_USER_HOME/outernet/install/outernet.conf /etc/; then
-  echo "outernet.conf: success."
-else
-  echo "Error: outernet.conf could not be moved."
-  exit 1
-fi
-
     #moving into var/log
 if mv -f $ORIGINAL_USER_HOME/outernet/install/outernet.log /var/log/; then
   echo "outernet.log: success."
@@ -53,10 +45,19 @@ else
   exit 1
 fi
 
+    #moving config into etc
+if mv -f $ORIGINAL_USER_HOME/outernet/install/service/config /etc/outernet; then
+  echo "outernet.conf: success."
+else
+  echo "Error: outernet.conf could not be moved."
+  exit 1
+fi
+
+
 echo Files moved Successfully!
 
     #Sets location of the Config file
-CONFIG_FILE="/etc/outernet.conf"
+CONFIG_FILE="/etc/outernet/outernet.conf"
 
     #Sends current config to the log
 sudo sed "s/NODE_NAME=.*/NODE_NAME="$setNODE_NAME"/" $CONFIG_FILE | sudo tee /var/outernet.conf > /dev/null
