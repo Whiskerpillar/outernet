@@ -3,5 +3,5 @@
 Name=bat0
 Kind=batadv
 
-[BATADV]
-MeshIF=wlan0
+[BatmanAdvanced]
+RoutingAlgorithm=batman-iv
