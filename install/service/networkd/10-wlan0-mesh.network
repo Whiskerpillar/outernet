@@ -1,12 +1,9 @@
+#Outernet Mesh wlan0 config
+# used to set the interface settings
 #/etc/systemd/network/10-wlan0-mesh.network
+
 [Match]
 Name=wlan0
 
 [Network]
-#BATADV=bat0
-MTUBytes=1468
-
-[Wireless]
-Mode=ad-hoc
-SSID=murmur
-Frequency=2412
+MTUBytes=1500
