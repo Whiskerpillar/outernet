@@ -47,10 +47,10 @@ fi
 
 sudo touch /etc/outernet
     #moving config into etc
-if mv -f $ORIGINAL_USER_HOME/outernet/install/service/config /etc/outernet; then
+if mv -f $ORIGINAL_USER_HOME/outernet/install/service/config /etc/outernet/; then
   echo "outernet.conf: success."
 else
-  echo "Error: outernet.conf could not be moved."
+  echo "Error: outernet config files could not be moved."
   exit 1
 fi
 
