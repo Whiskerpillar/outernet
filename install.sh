@@ -11,6 +11,8 @@ fi
     # Get the original user's home directory
 ORIGINAL_USER_HOME=$(getent passwd "$SUDO_USER" | cut -d: -f6)
 
+echo Thank you for Installing Outernet | read -t 5 | echo lets keep moving...
+
 read -p "What is your Node's name? :" setNODE_NAME
 read -p "What is your network SSID (default: murmur)? :" setNETWORKSSID
 read -p "Would you like to use a static IP Address? ('false' disables / IP address enables) :" setIPADDRESS
