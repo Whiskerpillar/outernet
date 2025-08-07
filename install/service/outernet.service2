@@ -14,7 +14,7 @@ WIRELESS_ESSID="outernet"
 MESH_MTU=""
 NODE_NAME="NewNode"
 
-source /etc/outernet.conf
+source /etc/outernet/outernet.conf
 
 echo Config Values
 echo $BOOT_TYPE $STATIC_ADDRESS $WIRELESS_CHANNEL $WIRELESS_ESSID $MESH_MTU
@@ -24,29 +24,37 @@ echo $BOOT_TYPE $STATIC_ADDRESS $WIRELESS_CHANNEL $WIRELESS_ESSID $MESH_MTU
 
 function provisionMurmur {
 
-echo Starting Murmur v1.0 network provision for Rasbian
+echo Starting outernet v1.0 network provision for Rasbian
 echo
-echo clearing old wireless config..
-sudo rm /etc/network/interfaces.d/wlan0
-sudo touch /etc/network/interfaces.d/wlan0
-echo 
-echo interfaces.d Config:
-echo Writing...
-echo 'auto wlan0' | sudo tee --append /etc/network/interfaces.d/wlan0
-echo 'iface wlan0 inet manual' | sudo tee --append /etc/network/interfaces.d/wlan0
-echo 'wireless-channel' $WIRELESS_CHANNEL | sudo tee --append /etc/network/interfaces.d/wlan0
-echo 'wireless-essid' $WIRELESS_ESSID | sudo tee --append /etc/network/interfaces.d/wlan0
-echo 'wireless-mode ad-hoc' | sudo tee --append /etc/network/interfaces.d/wlan0
-echo Complete...
+
+echo Removing old Network Files...
+sudo rm /etc/systemd/network/10-wlan0-mesh.network
+sudo rm /etc/systemd/network/20-bat0.network
+sudo rm /etc/systemd/network/20-bat0.netdev
+echo
+
+echo Updating Network Files
+echo -Eeeh Im a little lazy here. this will evendtuly be updated auto but not yet
+
+echo Copying new Network Files
+sudo cp /etc/outernet/networkd/ /etc/systemd/network/
+
+
+echo Stoping Networkd
+sudo systemctl stop systemd-networkd
 
 echo Stopping wpa services
 sudo service wpa_supplicant stop
 
-echo Starting boot...
+echo Starting Outernet...
+
+sudo systemctl daemon-reload
+sbin/wpa_supplicant -c/etc/outernet/wpa/wpa_supplicant-wlan0.conf -iwlan0 -Dnl80211 -B
+sudo systemctl restart systemd-networkd 
+
 sudo batctl if add wlan0
 sudo ifconfig bat0 mtu $MESH_MTU
-sudo ifconfig wlan0 up
-sudo ifconfig bat0 up
+
 
 #Setting Static Address
 if [[ $STATIC_ADDRESS != "false" ]]; then
@@ -64,16 +72,7 @@ echo If you are running this post start-up you will need to restart to reconnect
 }
 
 
-#SCRIPT
 
-# Log file location
-#LOG_FILE="~/murmur/murmur.log"
-# Function to log messages
-#log() {
-#  echo "$(date +"%Y-%m-%d %H:%M:%S") - $*" >> "$LOG_FILE"
-#}
-# Example usage
-#log "Script started"
 
 if [[ $BOOT_TYPE = "outernet" ]]; then
 		provisionMurmur
