@@ -47,7 +47,7 @@ else
   exit 1
 fi
 
-sudo touch /etc/outernet
+mkdir -p /etc/outernet
     #moving config into etc
 if mv -f $ORIGINAL_USER_HOME/outernet/install/service/config /etc/outernet/; then
   echo "outernet.conf: success."
