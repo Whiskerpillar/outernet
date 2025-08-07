@@ -44,7 +44,8 @@ echo Stoping Networkd
 sudo systemctl stop systemd-networkd
 
 echo Stopping wpa services
-sudo service wpa_supplicant stop
+sudo systemctl stop wpa_supplicant
+sudo systemctl stop NetworkManager
 
 echo Starting Outernet...
 
@@ -70,8 +71,6 @@ echo Using basic wireless.
 sudo rm /etc/network/interfaces.d/wlan0
 echo If you are running this post start-up you will need to restart to reconnect.
 }
-
-
 
 
 if [[ $BOOT_TYPE = "outernet" ]]; then
