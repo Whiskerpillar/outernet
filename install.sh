@@ -31,7 +31,8 @@ mkdir -p /etc/outernet
 sudo rm /var/log/outernet
 mkdir -p /var/log/outernet
 
-    #Moving Service from home to usr
+
+    #Moving services bash scripts to /usr/local/bin/
 if mv -f $ORIGINAL_USER_HOME/outernet/install/service/bash/* /usr/local/bin/; then
   echo "outernet-service.sh: success."
 else
@@ -39,7 +40,7 @@ else
   exit 1
 fi
 
-    #moving Services
+    #moving Services to /etc/systemd/system/
 if mv -f $ORIGINAL_USER_HOME/outernet/install/service/services/* /etc/systemd/system/; then
   echo "Service: success."
 else
@@ -47,7 +48,7 @@ else
   exit 1
 fi
 
-    #moving Log files
+    #moving Log files to  /var/log/outernet/
 if mv -f $ORIGINAL_USER_HOME/outernet/install/logs/* /var/log/outernet/; then
   echo "Logs: success."
   LOG_FILE="/var/log/outernet.log"
