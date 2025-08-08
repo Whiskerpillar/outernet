@@ -5,6 +5,7 @@ After=network.target
 [Service]
 Type=oneshot
 ExecStart=/usr/local/bin/outernet-service.sh
+ExecStop=/usr/local/bin/outernet-stop.sh
 RemainAfterExit=yes
 
 [Install]
