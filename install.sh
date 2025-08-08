@@ -82,10 +82,6 @@ sudo sed -i "s/^NODE_NAME=.*/NODE_NAME=\"$setNODE_NAME\"/" $CONFIG_FILE
 sudo sed -i "s/^WIRELESS_ESSID=.*/WIRELESS_ESSID=\"$setNETWORKSSID\"/" $CONFIG_FILE
 sudo sed -i "s/STATIC_ADDRESS=.*/STATIC_ADDRESS=\"$setIPADDRESS\"/" $CONFIG_FILE
 
-    #Enabling services. 
-echo Enabling Outernet service
-sudo systemctl enable outernet
-
 
     #Downloads requried Apps. 
 if [[ "$installDOWNLOAD_APPS" == "y" ]]; then
