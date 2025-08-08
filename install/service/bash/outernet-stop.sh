@@ -14,7 +14,6 @@ echo Complete!
 echo Stopping outernet services
 
 sudo systemctl stop outernet-wpa
-sudo systemctl stop outernet
 echo Complete!
 
 Echo Restarting normal network stack
