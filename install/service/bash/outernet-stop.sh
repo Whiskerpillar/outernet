@@ -1,3 +1,4 @@
+#!/bin/bash
 #used for the outernet service to revert it's changes
 
 
