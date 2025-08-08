@@ -34,17 +34,17 @@ sudo rm /etc/systemd/network/20-bat0.netdev
 echo
 
 echo Updating Network Files
-echo -Eeeh Im a little lazy here. this will be updated to automatic but not yet
+echo Eeeh Im a little lazy here. this will be updated to automatic but not yet
 
 echo Copying new Network Files
 sudo cp /etc/outernet/networkd/ /etc/systemd/network/
 
 echo Stoping Networkd
 sudo systemctl stop systemd-networkd
+sudo systemctl stop NetworkManager
 
 echo Stopping wpa services
 sudo systemctl stop wpa_supplicant
-sudo systemctl stop NetworkManager
 
 echo Starting Outernet...
 
@@ -78,6 +78,6 @@ if [[ $BOOT_TYPE = "outernet" ]]; then
 		revertToWireless
 	fi
 
-sudo systemctl restart networking
+#sudo systemctl restart networking
 
 exit 0
