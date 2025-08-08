@@ -18,7 +18,7 @@ sudo systemctl stop outernet
 echo Complete!
 
 Echo Restarting normal network stack
-sudo systemctl restart wpa_supplicant
+#sudo systemctl restart wpa_supplicant
 sudo systemctl restart systemd-networkd
 sudo systemctl restart NetworkManager
 echo Complete!
