@@ -1,0 +1,10 @@
+[Unit]
+Description=Outernet Mesh WPA Supplicant
+After=dbus.service
+ 
+[Service]
+Type=forking
+ExecStart=/sbin/wpa_supplicant -c/etc/outernet/wpa/wpa_supplicant-mesh.service -i%I -Dnl80211 -B
+ 
+[Install]
+WantedBy=multi-user.target
