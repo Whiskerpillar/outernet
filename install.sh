@@ -32,7 +32,7 @@ sudo rm /var/log/outernet
 mkdir -p /var/log/outernet
 
     #Moving Service from home to usr
-if mv -f $ORIGINAL_USER_HOME/outernet/install/service/outernet-service.sh /usr/local/bin/; then
+if mv -f $ORIGINAL_USER_HOME/outernet/install/service/bash/* /usr/local/bin/; then
   echo "outernet-service.sh: success."
 else
   echo "Error: outernet-service.sh could not be moved."
@@ -68,7 +68,7 @@ echo Files moved Successfully!
 
     #Setting as exacuatable 
 sudo chmod +x /usr/local/bin/outernet-service.sh
-
+sudo chmod +x /usr/local/bin/outernet-stop.sh
 
     #Sets location of the Config file
 CONFIG_FILE="/etc/outernet/outernet.conf"
