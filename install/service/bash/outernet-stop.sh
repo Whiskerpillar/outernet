@@ -23,3 +23,5 @@ sudo systemctl restart systemd-networkd
 sudo systemctl restart NetworkManager
 echo Complete!
 echo Reversion complete
+
+exit 0
