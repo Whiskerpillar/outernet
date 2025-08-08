@@ -1,7 +1,7 @@
 #/etc/wpa_supplicant/wpa_supplicant-wlan0.conf
 ctrl_interface=/var/run/wpa_supplicant
 update_config=1
-p2p_disable=1
+#p2p_disable=1
 country=us
 
 network={
