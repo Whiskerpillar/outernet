@@ -4,14 +4,14 @@
 #AM 8/2/2025
 
 #Log to outernet.log
-exec >> /var/log/outernet.log 2>&1
+exec >> /var/log/outernet/outernet.log 2>&1
 
 #CONFIG Defaults (Please do not change here as it will get overwriten by a the config file)
 BOOT_TYPE="wifi"
 STATIC_ADDRESS="false"
 WIRELESS_CHANNEL="1"
 WIRELESS_ESSID="outernet"
-MESH_MTU=""
+MESH_MTU="1468"
 NODE_NAME="NewNode"
 
 source /etc/outernet/outernet.conf
@@ -34,11 +34,10 @@ sudo rm /etc/systemd/network/20-bat0.netdev
 echo
 
 echo Updating Network Files
-echo -Eeeh Im a little lazy here. this will evendtuly be updated auto but not yet
+echo -Eeeh Im a little lazy here. this will be updated to automatic but not yet
 
 echo Copying new Network Files
 sudo cp /etc/outernet/networkd/ /etc/systemd/network/
-
 
 echo Stoping Networkd
 sudo systemctl stop systemd-networkd
@@ -50,7 +49,7 @@ sudo systemctl stop NetworkManager
 echo Starting Outernet...
 
 sudo systemctl daemon-reload
-sbin/wpa_supplicant -c/etc/outernet/wpa/wpa_supplicant-wlan0.conf -iwlan0 -Dnl80211 -B
+sudo systemctl start outernet-wpa
 sudo systemctl restart systemd-networkd 
 
 sudo batctl if add wlan0
