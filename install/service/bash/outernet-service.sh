@@ -37,7 +37,7 @@ echo Updating Network Files
 echo Eeeh Im a little lazy here. this will be updated to automatic but not yet
 
 echo Copying new Network Files
-sudo cp /etc/outernet/networkd/ /etc/systemd/network/
+sudo cp /etc/outernet/networkd/* /etc/systemd/network/
 
 echo Stoping Networkd
 sudo systemctl stop systemd-networkd
